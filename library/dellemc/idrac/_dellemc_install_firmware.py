@@ -3,7 +3,7 @@
 
 #
 # Dell EMC OpenManage Ansible Modules
-# Version 1.4
+# Version 2.0
 # Copyright (C) 2019 Dell Inc.
 
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -15,7 +15,7 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['deprecated'],
+                    'status': ['preview'],
                     'supported_by': 'community'}
 
 DOCUMENTATION = '''
@@ -140,13 +140,13 @@ EXAMPLES = '''
 # controller machine. 'share_mnt' is required argument only for 14G servers
 
 - name: Update firmware from repository on a CIFS Share
-  dellemc_idrac_firmware:
+  dellemc_install_firmware:
     idrac_ip: "192.168.10.1"
     idrac_user: "user_name"
-    idrac_pwd: "user_pwd"
+    idrac_password: "user_pwd"
     share_name: "\\\\192.168.20.10\\share"
     share_user: "share_user_name"
-    share_pwd: "share_user_pwd"
+    share_password: "share_user_pwd"
     share_mnt: "/mnt/cifs_share"
     catalog_file_name: "Catalog.xml"
     apply_update: True
@@ -159,10 +159,10 @@ EXAMPLES = '''
 # controller machine. 'share_mnt' is required argument only for 14G servers
 
 - name: Update firmware from repository on a NFS Share
-  dellemc_idrac_firmware:
+  dellemc_install_firmware:
     idrac_ip: "192.168.10.1"
     idrac_user: "user_name"
-    idrac_pwd: "user_pwd"
+    idrac_password: "user_pwd"
     share_name: "192.168.20.10:/share"
     share_mnt: "/mnt/nfs_share"
     catalog_file_name: "Catalog.xml"
@@ -178,7 +178,7 @@ EXAMPLES = '''
   dellemc_install_firmware:
     idrac_ip: "192.168.10.1"
     idrac_user: "user_name"
-    idrac_pwd: "user_pwd"
+    idrac_password: "user_pwd"
     share_name: "http://<ipaddress>/firmware"
     catalog_file_name: "Catalog.xml"
     apply_update: True
@@ -475,7 +475,7 @@ def main():
         supports_check_mode=False)
 
     module.deprecate("The 'dellemc_install_firmware' module has been deprecated. "
-                     "Use 'dellemc_idrac_firmware' instead",
+                     "Use 'idrac_firmware' instead",
                      version=2.11)
 
     try:
