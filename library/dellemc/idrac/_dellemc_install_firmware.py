@@ -45,11 +45,12 @@ options:
     description:
       - iDRAC user name
     type: 'str'
-  idrac_pwd:
+  idrac_password:
     required: True
     description:
       - iDRAC user password
     type: 'str'
+    aliases: ['idrac_pwd']
   idrac_port:
     required: False
     description:
@@ -69,11 +70,12 @@ options:
         user is part of a domain else 'user'. This option is mandatory if
         I(share_name) is a CIFS share.
     type: 'str'
-  share_pwd:
+  share_password:
     required: False
     description:
       - Network share user password
     type: 'str'
+    aliases: ['share_pwd']
   share_mnt:
     required: False
     description:
@@ -245,7 +247,7 @@ def _validate_args(module):
         raise ValueError("Invalid catalog file: {0}. Must end with \'.xml\' or \'.XML\' extension".format(module.params['catalog_file_name']))
 
 
-def update_firmware_from_url(idrac, share_name, share_user, share_pwd,
+def update_firmware_from_url(idrac, share_name, share_user, share_password,
                              catalog_file_name, apply_update=True,
                              reboot=False, job_wait=True,
                              ignore_cert_warning=True):
@@ -258,8 +260,8 @@ def update_firmware_from_url(idrac, share_name, share_user, share_pwd,
     :param share_user: user name for the URL
     :type share_user: ``str``
 
-    :param share_pwd: password for the URL
-    :type share_pwd: ``str``
+    :param share_password: password for the URL
+    :type share_password: ``str``
 
     :param catalog_file_name: Name of the Catalog file on the repository
     :type catalog_file_name: ``str``
@@ -310,7 +312,7 @@ def update_firmware_from_url(idrac, share_name, share_user, share_pwd,
 
             result = idrac.update_mgr.update_from_repo_url(
                 ipaddress=p.netloc, share_type=p.scheme, share_name=path,
-                share_user=share_user, share_pwd=share_pwd,
+                share_user=share_user, share_password=share_password,
                 catalog_file=catalog_file_name, apply_update=apply_update,
                 reboot_needed=reboot, ignore_cert_warning=ignore_cert_warning,
                 job_wait=job_wait)
@@ -318,8 +320,8 @@ def update_firmware_from_url(idrac, share_name, share_user, share_pwd,
     return result
 
 
-def update_firmware_from_net_share(idrac, share_name, share_user, share_pwd,
-                                   share_mnt, catalog_file_name,
+def update_firmware_from_net_share(idrac, share_name, share_user,
+                                   share_password, share_mnt, catalog_file_name,
                                    apply_update=True, reboot=False,
                                    job_wait=True):
     """
@@ -334,8 +336,8 @@ def update_firmware_from_net_share(idrac, share_name, share_user, share_pwd,
     :param share_user: username for the remote network share
     :type share_user: ``str``
 
-    :param share_pwd: password for the remote network share
-    :type share_pwd: ``str``
+    :param share_password: password for the remote network share
+    :type share_password: ``str``
 
     :param share_mnt: local mount point for the remote network share
     :type share_mnt: ``str``
@@ -358,7 +360,7 @@ def update_firmware_from_net_share(idrac, share_name, share_user, share_pwd,
 
     net_share_repo = FileOnShare(remote=share_name,
                                  mount_point=share_mnt,
-                                 creds=UserCredentials(share_user, share_pwd),
+                                 creds=UserCredentials(share_user, share_password),
                                  isFolder=True)
     catalog_path = net_share_repo.new_file(catalog_file_name)
 
@@ -391,7 +393,7 @@ def update_firmware(idrac, module):
     try:
         share_name = module.params['share_name']
         share_user = module.params.get('share_user')
-        share_pwd = module.params.get('share_pwd')
+        share_password = module.params.get('share_password')
         share_mnt = module.params.get('share_mnt')
         catalog_file_name = module.params['catalog_file_name']
         apply_update = module.params['apply_update']
@@ -411,7 +413,7 @@ def update_firmware(idrac, module):
             # only WS-Man
             idrac.use_redfish = False
             result['msg'] = update_firmware_from_url(idrac, share_name,
-                                                     share_user, share_pwd,
+                                                     share_user, share_password,
                                                      catalog_file_name,
                                                      apply_update,
                                                      reboot, job_wait,
@@ -422,7 +424,8 @@ def update_firmware(idrac, module):
                 raise TypeError(msg="Error: \'share_mnt\' is a mandatory argument for firmware update using Server Configuration Profile")
 
             result['msg'] = update_firmware_from_net_share(idrac, share_name,
-                                                           share_user, share_pwd,
+                                                           share_user,
+                                                           share_password,
                                                            share_mnt,
                                                            catalog_file_name,
                                                            apply_update, reboot,
