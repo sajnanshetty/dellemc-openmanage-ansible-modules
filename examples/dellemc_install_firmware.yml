@@ -46,7 +46,7 @@
 
   # Update firmware from repository on a HTTP Share.
   # In this example, http://<ipaddress>/firmware contains the Catalog file and
-  # the DUPs 
+  # the DUPs
   - name: Update firmware from repository on a HTTP Share
     dellemc_install_firmware:
       idrac_ip: "{{ idrac_ip }}"
@@ -63,7 +63,7 @@
 
   # Update firmware from repository on a FTP Share.
   # In this example, http://<ipaddress>/firmware contains the Catalog file and
-  # the DUPs 
+  # the DUPs
   - name: Update firmware from repository on a FTP Share
     dellemc_install_firmware:
       idrac_ip: "{{ idrac_ip }}"
