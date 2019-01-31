@@ -74,8 +74,8 @@ EXAMPLES = '''
 - name: Get Installed Firmware Inventory
     dellemc_idrac_sw_inventory:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_mnt:  "/mnt/NFS/"
       choice:     "installed"
 '''

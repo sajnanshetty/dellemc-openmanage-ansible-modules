@@ -51,8 +51,8 @@ EXAMPLES = '''
 - name: Get System Inventory
   dellemc_idrac_inventory:
     idrac_ip:   "192.168.1.1"
-    idrac_user: "root"
-    idrac_pwd:  "calvin"
+    idrac_user: "username"
+    idrac_pwd:  "pword"
 '''
 
 RETURN = '''

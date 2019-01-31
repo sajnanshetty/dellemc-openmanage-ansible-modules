@@ -70,8 +70,8 @@ EXAMPLES = '''
 - name: Get LC Job Stattus
     dellemc_idrac_lc_job:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       job_id:     "JID_1234556789012"
       state:      "present"
 
@@ -79,8 +79,8 @@ EXAMPLES = '''
 - name: Delete the LC Job
     dellemc_idrac_lc_job:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       job_id:     "JID_1234556789012"
       state:      "absent"
 
@@ -88,8 +88,8 @@ EXAMPLES = '''
 - name: Clear the LC Job queue
     dellemc_idrac_lc_job:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       job_id:     "JID_CLEARALL"
       state:      "present"
 

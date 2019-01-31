@@ -85,8 +85,8 @@ EXAMPLES = '''
 - name: Enable CSIOR
     dellemc_idrac_lc_attr:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"
@@ -97,8 +97,8 @@ EXAMPLES = '''
 - name: Disable CSIOR
     dellemc_idrac_lc_attr:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"

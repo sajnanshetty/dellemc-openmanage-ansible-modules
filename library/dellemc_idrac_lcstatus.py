@@ -55,8 +55,8 @@ EXAMPLES = '''
 - name: Get Lifecycle Controller Status
     dellemc_idrac_lcstatus:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
 '''
 
 RETURN = '''

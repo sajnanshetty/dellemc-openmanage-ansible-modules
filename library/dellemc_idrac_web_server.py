@@ -111,8 +111,8 @@ EXAMPLES = '''
 - name: Configure Web Server TLS and SSL settings (using CIFS network share)
     dellemc_idrac_web_server:
       idrac_ip:     "192.168.1.1"
-      idrac_user:   "root"
-      idrac_pwd:    "calvin"
+      idrac_user:   "username"
+      idrac_pwd:    "pword"
       share_name:   "\\\\192.168.10.10\\share"
       share_user:   "user1"
       share_pwd:    "password"
@@ -123,8 +123,8 @@ EXAMPLES = '''
 - name: Configure Web Server TLS and SSL settings (using NFS network share)
     dellemc_idrac_web_server:
       idrac_ip:     "192.168.1.1"
-      idrac_user:   "root"
-      idrac_pwd:    "calvin"
+      idrac_user:   "username"
+      idrac_pwd:    "pword"
       share_name:   "192.168.10.10:/share"
       share_user:   "user1"
       share_pwd:    "password"

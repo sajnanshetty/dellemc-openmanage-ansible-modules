@@ -74,8 +74,8 @@ EXAMPLES = '''
 - name: Power On the Server
     dellemc_idrac_power:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       state:      "PowerOn"
 '''
 

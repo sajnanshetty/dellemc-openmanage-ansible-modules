@@ -117,8 +117,8 @@ EXAMPLES = '''
 - name: Import Server Configuration Profile
   dellemc_idrac_import_scp:
     idrac_ip:              "192.168.1.1"
-    idrac_user:            "root"
-    idrac_pwd:             "calvin"
+    idrac_user:            "username"
+    idrac_pwd:             "pword"
     share_name:            "/home/user"
     scp_file:              "scp_file.xml"
     scp_components:        "ALL"
@@ -130,8 +130,8 @@ EXAMPLES = '''
 - name: Import Server Configuration Profile
     dellemc_idrac_import_scp:
       idrac_ip:         "192.168.1.1"
-      idrac_user:       "root"
-      idrac_pwd:        "calvin"
+      idrac_user:       "username"
+      idrac_pwd:        "pword"
       share_name:       "\\\\192.168.10.10\\share"
       share_user:       "user1"
       share_pwd:        "password"
@@ -146,8 +146,8 @@ EXAMPLES = '''
 - name: Import Server Configuration Profile
     dellemc_idrac_import_scp:
       idrac_ip:             "192.168.1.1"
-      idrac_user:           "root"
-      idrac_pwd:            "calvin"
+      idrac_user:           "username"
+      idrac_pwd:            "pword"
       share_name:           "192.168.10.10:/share"
       share_user:           "user1"
       share_pwd:            "password"

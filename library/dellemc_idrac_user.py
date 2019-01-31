@@ -99,8 +99,8 @@ EXAMPLES = '''
 - name: Add a new iDRAC User
     dellemc_idrac_user:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"
@@ -113,8 +113,8 @@ EXAMPLES = '''
 - name: Change password for the "newuser"
     dellemc_idrac_user:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"
@@ -126,8 +126,8 @@ EXAMPLES = '''
 - name: Change privilege for the "newuser"
     dellemc_idrac_user:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"
@@ -139,8 +139,8 @@ EXAMPLES = '''
 - name: Delete "newuser"
     dellemc_idrac_user:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"

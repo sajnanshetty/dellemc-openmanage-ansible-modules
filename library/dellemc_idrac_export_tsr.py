@@ -71,8 +71,8 @@ EXAMPLES = '''
 - name: Export TSR to a CIFS network share
     dellemc_idrac_export_tsr:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"
@@ -81,8 +81,8 @@ EXAMPLES = '''
 - name: Export TSR to a NFS network share
     dellemc_idrac_export_tsr:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "192.168.10.10:/share"
       share_user: "user1"
       share_pwd:  "password"

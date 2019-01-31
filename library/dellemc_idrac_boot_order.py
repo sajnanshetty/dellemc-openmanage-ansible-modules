@@ -137,8 +137,8 @@ EXAMPLES = '''
 - name: Change Boot Mode to UEFI
     dellemc_idrac_boot_order:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"
@@ -148,8 +148,8 @@ EXAMPLES = '''
 - name: Configure UEFI PXE Network Settings
     dellemc_idrac_boot_order:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"
@@ -164,8 +164,8 @@ EXAMPLES = '''
 - name: Configure UEFI Boot Sequence
     dellemc_idrac_boot_order:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"
@@ -176,8 +176,8 @@ EXAMPLES = '''
 - name: Configure First Boot device to PXE
     dellemc_idrac_bot_order:
       idrac_ip:   "192.168.1.1"
-      idrac_user: "root"
-      idrac_pwd:  "calvin"
+      idrac_user: "username"
+      idrac_pwd:  "pword"
       share_name: "\\\\192.168.10.10\\share"
       share_user: "user1"
       share_pwd:  "password"

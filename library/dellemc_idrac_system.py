@@ -83,8 +83,8 @@ EXAMPLES = '''
 - name: Configure System Topology such as DC name, Rack name, Slot name etc.
     dellemc_idrac_location:
       idrac_ip:     "192.168.1.1"
-      idrac_user:   "root"
-      idrac_pwd:    "calvin"
+      idrac_user:   "username"
+      idrac_pwd:    "pword"
       share_name:   "\\\\192.168.10.10\\share\\"
       share_user:   "user1"
       share_pwd:    "password"
