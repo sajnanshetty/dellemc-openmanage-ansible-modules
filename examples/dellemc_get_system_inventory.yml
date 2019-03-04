@@ -7,6 +7,6 @@
   tasks:
   - name: Get system inventory
     dellemc_get_system_inventory:
-       idrac_ip:   "{{ idrac_ip }}"
-       idrac_user: "{{ idrac_user }}"
-       idrac_password:  "{{ idrac_password }}"
+      idrac_ip:  "{{ idrac_ip }}"
+      idrac_user:  "{{ idrac_user }}"
+      idrac_password: "{{ idrac_password }}"

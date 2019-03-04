@@ -27,14 +27,14 @@ Sample Results for the respective modules could be found under [samples](./sampl
 
   * Clone the latest development repository and install the ansible modules. 
   ```
-  git clone -b devel --single-branch https://github.com/dell/dellemc-openmanage-ansible-modules.git
+  git clone https://github.com/dell/dellemc-openmanage-ansible-modules.git
   cd dellemc-openmanage-ansible-modules
   python install.py
   ```
 
   * It is recommended to update the ansible configuration setting environment variables to point to the current module paths, if any.
 
-  * If using an alternative python interpreter, i.e. virtualenv, you must set the Ansible variable ansible_python_interpreter to that path.
+  * If using an alternative python interpreter or python virtualenv, you must set the Ansible variable ```ansible_python_interpreter``` to the right python interpreter.
 
 ## Uninstallation
 
