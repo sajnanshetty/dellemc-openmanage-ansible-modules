@@ -3,7 +3,7 @@
 
 #
 # Dell EMC OpenManage Ansible Modules
-# Version 1.4
+# Version 2.0
 # Copyright (C) 2019 Dell Inc.
 
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -437,7 +437,7 @@ def update_firmware(idrac, module):
         if result['update_status']['Status'] == "Success":
             result['msg'] = 'Successfully created the repository update job.'
             if module.params['job_wait']:
-                remote['msg'] = 'Succesfully completed the repository update job.'
+                result['msg'] = 'Succesfully completed the repository update job.'
                 result['changed'] = True
         else:
             result['msg'] = 'Failed to update firmware.'

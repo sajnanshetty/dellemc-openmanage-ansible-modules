@@ -455,13 +455,15 @@ def main():
             # iDRAC Credentials
             "idrac_ip": {"required": True, "type": 'str'},
             "idrac_user": {"required": True, "type": 'str'},
-            "idrac_pwd": {"required": True, "type": 'str', "no_log": True},
+            "idrac_password": {"required": True, "aliases": ['idrac_pwd'],
+                               "type": 'str', "no_log": True},
             "idrac_port": {"required": False, "default": 443, "type": 'int'},
 
             # Network File Share
             "share_name": {"required": True, "type": 'str'},
             "share_user": {"required": False, "type": 'str', "default": None},
-            "share_pwd": {"required": False, "type": 'str', "default": None, "no_log": True},
+            "share_password": {"required": False, "aliases": ['share_pwd'],
+                               "type": 'str', "default": None, "no_log": True},
             "share_mnt": {"required": False, "type": 'path', "default": None},
 
             # Firmware update parameters
