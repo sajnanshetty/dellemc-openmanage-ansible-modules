@@ -79,7 +79,7 @@ options:
         applicable for HTTP, HTTPS and FTP share.
       - This option is mandatory only when using firmware update from a network
         repository using Server Configuration Profiles (SCP).
-      - SCP based firmware update is only supported for iDRAC firmware 
+      - SCP based firmware update is only supported for iDRAC9 firmware 
         version >=3.00.00.00.
     required: False
     type: 'path'
@@ -133,9 +133,7 @@ author:
 
 EXAMPLES = '''
 ---
-# Update firmware from repository on a CIFS Share. '\\\\192.168.20.10\\share' is
-# locally mounted to '/mnt/cifs_share' in a read-write mode on the Ansible
-# controller machine. 'share_mnt' is required argument only for 14G servers
+# Update firmware from repository on a CIFS Share
 
 - name: Update firmware from repository on a CIFS Share
   dellemc_idrac_firmware:
@@ -148,13 +146,11 @@ EXAMPLES = '''
       share_mnt: "/mnt/cifs_share"
       catalog_file_name: "Catalog.xml"
       apply_update: True
-      reboot: False
+      reboot: True
       job_wait: True
   delegate_to: localhost
 
-# Update firmware from repository on a NFS Share. '192.168.20.10:/share' is
-# locally mounted to '/mnt/nfs_share' in a read-write mode on the Ansible
-# controller machine. 'share_mnt' is required argument only for 14G servers
+# Update firmware from repository on a NFS Share
 
 - name: Update firmware from repository on a NFS Share
   dellemc_idrac_firmware:
@@ -162,23 +158,20 @@ EXAMPLES = '''
     idrac_user: "user_name"
     idrac_pwd: "user_pwd"
     share_name: "192.168.20.10:/share"
-    share_mnt: "/mnt/nfs_share"
     catalog_file_name: "Catalog.xml"
     apply_update: True
-    reboot: False
+    reboot: True
     job_wait: True
   delegate_to: localhost
 
 # Update firmware from repository on a HTTP Share.
-# In this example, http://<ipaddress>/firmware contains the Catalog file and
-# the DUPs
 
 - name: Update firmware from repository on a HTTP Share
   dellemc_install_firmware:
     idrac_ip: "192.168.10.1"
     idrac_user: "user_name"
     idrac_pwd: "user_pwd"
-    share_name: "http://<ipaddress>/firmware"
+    share_name: "http://downloads.dell.com/catalog"
     catalog_file_name: "Catalog.xml"
     apply_update: True
     reboot: True
@@ -476,6 +469,7 @@ def main():
         },
 
         supports_check_mode=False)
+
     module.deprecate("The 'dellemc_idrac_firmware' module has been deprecated. "
                      "Use 'idrac_firmware' instead",
                      version=2.12)
