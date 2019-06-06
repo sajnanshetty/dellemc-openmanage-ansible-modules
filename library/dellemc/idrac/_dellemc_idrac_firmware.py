@@ -9,6 +9,7 @@
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # All rights reserved. Dell, EMC, and other trademarks are trademarks of Dell Inc. or its subsidiaries.
 # Other trademarks may be trademarks of their respective owners.
+#
 
 
 from __future__ import (absolute_import, division, print_function)
@@ -45,11 +46,12 @@ options:
       - iDRAC user name
     required: True
     type: 'str'
-  idrac_pwd:
+  idrac_password:
     description:
       - iDRAC user password
     required: True
     type: 'str'
+    aliases: ['idrac_pwd']
   idrac_port:
     description:
       - iDRAC port
@@ -69,11 +71,12 @@ options:
         I(share_name) is a CIFS share.
     required: False
     type: 'str'
-  share_pwd:
+  share_password:
     description:
       - Network share user password
     required: False
     type: 'str'
+    aliases: ['share_pwd']
   share_mnt:
     description:
       - Local mount path on the ansible controller machine for the remote
@@ -146,7 +149,7 @@ EXAMPLES = '''
       idrac_pwd: "user_pwd"
       share_name: '\\\\192.168.20.10\\share'
       share_user: "share_user_name"
-      share_pwd: "share_user_pwd"
+      share_password: "share_user_password"
       share_mnt: "/mnt/cifs_share"
       catalog_file_name: "Catalog.xml"
       apply_update: True
@@ -246,7 +249,7 @@ def _validate_args(module):
         raise ValueError("Invalid catalog file: {0}. Must end with \'.xml\' or \'.XML\' extension".format(module.params['catalog_file_name']))
 
 
-def update_firmware_from_url(idrac, share_name, share_user, share_pwd,
+def update_firmware_from_url(idrac, share_name, share_user, share_password,
                              catalog_file_name, apply_update=True,
                              reboot=False, job_wait=True,
                              ignore_cert_warning=True):
@@ -259,8 +262,8 @@ def update_firmware_from_url(idrac, share_name, share_user, share_pwd,
     :param share_user: user name for the URL
     :type share_user: ``str``
 
-    :param share_pwd: password for the URL
-    :type share_pwd: ``str``
+    :param share_password: password for the URL
+    :type share_password: ``str``
 
     :param catalog_file_name: Name of the Catalog file on the repository
     :type catalog_file_name: ``str``
@@ -311,16 +314,16 @@ def update_firmware_from_url(idrac, share_name, share_user, share_pwd,
 
             result = idrac.update_mgr.update_from_repo_url(
                 ipaddress=repo_url.netloc, share_type=repo_url.scheme,
-                share_name=path, share_user=share_user, share_pwd=share_pwd,
-                catalog_file=catalog_file_name, apply_update=apply_update,
-                reboot_needed=reboot, ignore_cert_warning=ignore_cert_warning,
-                job_wait=job_wait)
+                share_name=path, share_user=share_user,
+                share_password=share_password, catalog_file=catalog_file_name,
+                apply_update=apply_update, reboot_needed=reboot,
+                ignore_cert_warning=ignore_cert_warning, job_wait=job_wait)
 
     return result
 
 
-def update_firmware_from_net_share(idrac, share_name, share_user, share_pwd,
-                                   share_mnt, catalog_file_name,
+def update_firmware_from_net_share(idrac, share_name, share_user,
+                                   share_password, share_mnt, catalog_file_name,
                                    apply_update=True, reboot=False,
                                    job_wait=True):
     """
@@ -335,8 +338,8 @@ def update_firmware_from_net_share(idrac, share_name, share_user, share_pwd,
     :param share_user: username for the remote network share
     :type share_user: ``str``
 
-    :param share_pwd: password for the remote network share
-    :type share_pwd: ``str``
+    :param share_password: password for the remote network share
+    :type share_password: ``str``
 
     :param share_mnt: local mount point for the remote network share
     :type share_mnt: ``str``
@@ -359,7 +362,7 @@ def update_firmware_from_net_share(idrac, share_name, share_user, share_pwd,
 
     net_share_repo = FileOnShare(remote=share_name,
                                  mount_point=share_mnt,
-                                 creds=UserCredentials(share_user, share_pwd),
+                                 creds=UserCredentials(share_user, share_password),
                                  isFolder=True)
     catalog_path = net_share_repo.new_file(catalog_file_name)
 
@@ -392,7 +395,7 @@ def update_firmware(idrac, module):
     try:
         share_name = module.params['share_name']
         share_user = module.params.get('share_user')
-        share_pwd = module.params.get('share_pwd')
+        share_password = module.params.get('share_password')
         share_mnt = module.params.get('share_mnt')
         catalog_file_name = module.params['catalog_file_name']
         apply_update = module.params['apply_update']
@@ -414,7 +417,7 @@ def update_firmware(idrac, module):
             result['update_status'] = update_firmware_from_url(idrac,
                                                                share_name,
                                                                share_user,
-                                                               share_pwd,
+                                                               share_password,
                                                                catalog_file_name,
                                                                apply_update,
                                                                reboot, job_wait,
@@ -427,7 +430,7 @@ def update_firmware(idrac, module):
             result['update_status'] = update_firmware_from_net_share(idrac,
                                                                      share_name,
                                                                      share_user,
-                                                                     share_pwd,
+                                                                     share_password,
                                                                      share_mnt,
                                                                      catalog_file_name,
                                                                      apply_update,
@@ -460,13 +463,13 @@ def main():
             # iDRAC Credentials
             "idrac_ip": {"required": True, "type": 'str'},
             "idrac_user": {"required": True, "type": 'str'},
-            "idrac_pwd": {"required": True, "type": 'str', "no_log": True},
+            "idrac_password": {"required": True, "type": 'str', "aliases": ['idrac_pwd'], "no_log": True},
             "idrac_port": {"required": False, "default": 443, "type": 'int'},
 
             # Network File Share
             "share_name": {"required": True, "type": 'str'},
             "share_user": {"required": False, "type": 'str', "default": None},
-            "share_pwd": {"required": False, "type": 'str', "default": None, "no_log": True},
+            "share_password": {"required": False, "type": 'str', "default": None, "aliases": ['share_pwd'], "no_log": True},
             "share_mnt": {"required": False, "type": 'path', "default": None},
 
             # Firmware update parameters
@@ -478,6 +481,7 @@ def main():
         },
 
         supports_check_mode=False)
+
     module.deprecate("The 'dellemc_idrac_firmware' module has been deprecated. "
                      "Use 'idrac_firmware' instead",
                      version=2.12)
