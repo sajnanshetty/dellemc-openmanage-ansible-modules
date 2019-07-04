@@ -171,12 +171,12 @@ EXAMPLES = '''
 # the server firmware
 
 - name: Update firmware from repository on a HTTP/S Share
-  dellemc_install_firmware:
+  idrac_firmware:
     idrac_ip: "192.168.10.1"
     idrac_user: "user_name"
     idrac_password: "user_pwd"
     share_name: "http://downloads.dell.com/catalog"
-    catalog_file_name: "Catalog.xml"
+    catalog_file_name: "catalog.xml"
     apply_update: True
     reboot: True
     job_wait: True

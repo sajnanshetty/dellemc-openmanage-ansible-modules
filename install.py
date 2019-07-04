@@ -74,7 +74,7 @@ def copy_files(src, dest, keep_util=False):
     """
     srclst = os.listdir(src)
     for f in srclst:
-        if f.endswith(".py") and not (f in existing_files and keep_util):
+        if f.endswith(".py") and not keep_util:
             srcfile, destfile = os.path.join(src, f), os.path.join(dest, f)
             shutil.copy(srcfile, destfile)
 
