@@ -207,7 +207,7 @@ EXAMPLES = r'''
     initialize_type: "Slow"
 '''
 
-RETURN = r'''
+RETURNS = r'''
 ---
 msg:
   description: Overall status of the storage configuration operation.

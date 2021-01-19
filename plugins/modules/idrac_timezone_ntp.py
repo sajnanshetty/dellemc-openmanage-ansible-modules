@@ -75,8 +75,7 @@ EXAMPLES = """
        ntp_server_3: "190.168.0.3"
 """
 
-RETURN = r'''
----
+RETURNS = """
 msg:
     description: job details of the time zone setting operation.
     returned: success
@@ -121,7 +120,7 @@ error_info:
       ]
     }
   }
-'''
+"""
 
 
 from ansible_collections.dellemc.openmanage.plugins.module_utils.dellemc_idrac import iDRACConnection

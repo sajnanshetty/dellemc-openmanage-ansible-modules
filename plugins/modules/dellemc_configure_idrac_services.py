@@ -145,8 +145,7 @@ EXAMPLES = """
          community_name: "public"
 """
 
-RETURN = r'''
----
+RETURNS = """
 msg:
     description: Configures the iDRAC services attributes.
     returned: always
@@ -168,7 +167,7 @@ msg:
         "TargetSettingsURI": null,
         "retval": true
 }
-'''
+"""
 
 
 from ansible_collections.dellemc.openmanage.plugins.module_utils.dellemc_idrac import iDRACConnection

@@ -179,7 +179,7 @@ EXAMPLES = r'''
     - reset_config
 '''
 
-RETURN = r'''
+RETURNS = r'''
 ---
 msg:
   type: str

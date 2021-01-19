@@ -68,7 +68,7 @@ EXAMPLES = """
        job_wait: True
 """
 
-RETURN = r'''
+RETURNS = r'''
 ---
 msg:
   description: status of the export operation.

@@ -65,8 +65,7 @@ EXAMPLES = """
        syslog:  "Disabled"
 """
 
-RETURN = r'''
----
+RETURNS = """
 msg:
     description: Job details of the syslog operation.
     returned: success
@@ -112,7 +111,7 @@ error_info:
       ]
     }
   }
-'''
+"""
 
 
 import json

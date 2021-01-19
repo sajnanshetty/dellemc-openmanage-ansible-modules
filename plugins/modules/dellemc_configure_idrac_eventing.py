@@ -139,8 +139,7 @@ EXAMPLES = """
        password: "password"
 """
 
-RETURN = r'''
----
+RETURNS = """
 msg:
     description: Configures the iDRAC eventing attributes.
     returned: always
@@ -162,7 +161,7 @@ msg:
         "TargetSettingsURI": null,
         "retval": true
 }
-'''
+"""
 
 from ansible_collections.dellemc.openmanage.plugins.module_utils.dellemc_idrac import iDRACConnection
 from ansible.module_utils.basic import AnsibleModule
