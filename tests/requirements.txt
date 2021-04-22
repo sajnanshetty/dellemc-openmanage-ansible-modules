@@ -1,6 +1,6 @@
 omsdk
 pytest
-#pytest-xdist
+pytest-xdist
 mock
 # pytest-mock
 # pytest-cov
