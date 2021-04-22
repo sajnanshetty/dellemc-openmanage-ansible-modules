@@ -79,15 +79,15 @@ jobs:
       - name: Generate coverage report
         run: ansible-test coverage xml -v --group-by command --group-by version
         working-directory: /home/runner/.ansible/collections/ansible_collections/dellemc/openmanage
-
-      - name: Push coverage report to codecov.io
-        run: bash <(curl -s https://codecov.io/bash) -s 'tests/output/reports/' -F units
-        working-directory: /home/runner/.ansible/collections/ansible_collections/dellemc/openmanage
-
-      - name: Generate coverage report using pytest
-        continue-on-error: true
-        run: pytest -v --cov-config=tests/unit/plugins/.coveragerc --cov=plugins/ --cov-report=term-missing  --cov-fail-under=90 --cov-branch
-        working-directory: /home/runner/.ansible/collections/ansible_collections/dellemc/openmanage
+#
+#      - name: Push coverage report to codecov.io
+#        run: bash <(curl -s https://codecov.io/bash) -s 'tests/output/reports/' -F units
+#        working-directory: /home/runner/.ansible/collections/ansible_collections/dellemc/openmanage
+#
+#      - name: Generate coverage report using pytest
+#        continue-on-error: true
+#        run: pytest -v --cov-config=tests/unit/plugins/.coveragerc --cov=plugins/ --cov-report=term-missing  --cov-fail-under=90 --cov-branch
+#        working-directory: /home/runner/.ansible/collections/ansible_collections/dellemc/openmanage
 
 
   sanity:
