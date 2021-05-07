@@ -128,7 +128,7 @@ class TestOmeTemplate(FakeAnsibleModule):
         data = self.module.get_template_by_name("test Sample Template import1", f_module,
                                                 ome_connection_mock_for_template)
         assert data[0]["Name"] == "test Sample Template import1"
-        assert data[0]["Id"] is 24
+        assert data[0]["Id"] == 24
 
     def test_get_template_by_name_fail_case(self, ome_response_mock):
         ome_response_mock.json_data = {'value': [{"Name": "template by name for template name", "Id": 12}]}
